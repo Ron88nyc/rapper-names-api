@@ -15,10 +15,10 @@ const rappers = {
     'birthName':'Chancelor Bennet',
     'birthLocation': 'Chicago, Illinois'
     },
-    'dylan': {
-        'age':29,
-    'birthName':'Dylan',
-    'birthLocation': 'Dylan'
+    'Unknown': {
+        'age':0,
+    'birthName':'Unknown',
+    'birthLocation': 'Unknown'
     }
 }
 
@@ -32,7 +32,7 @@ app.get('/api/:rapperName', (request,response)=> {
     if(rappers[rappersName]){
         response.json(rappers[rappersName])
     }else {
-        response.json(rappers['Dylan'])
+        response.json(rappers['Unknown'])
     }
     // response.json(rappers)
 })
