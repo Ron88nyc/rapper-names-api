@@ -4,42 +4,41 @@ const cors = require('cors')
 const PORT = 8000
 
 app.use(cors())
+
 const rappers = {
     '21 savage': {
-        'age':29,
-    'birthName':'Sheyaa Bin Abraham-Joseph',
-    'birthLocation': 'London, England'
+        'age': 29,
+        'birthName': 'Shéyaa Bin Abraham-Joseph',
+        'birthLocation': 'London, England'
     },
-    'chance The Rapper': {
-        'age':29,
-    'birthName':'Chancelor Bennet',
-    'birthLocation': 'Chicago, Illinois'
+    'chance the rapper':{
+        'age': 29,
+        'birthName': 'Chancelor Bennett',
+        'birthLocation': 'Chicago, Illinois' 
     },
-    'Unknown': {
-        'age':0,
-    'birthName':'Unknown',
-    'birthLocation': 'Unknown'
+    'unknown':{
+        'age': 0,
+        'birthName': 'unknown',
+        'birthLocation': 'unknown'
     }
 }
-
-
-app.get('/',(request, response)=>{
+app.get('/', (request, response)=>{
     response.sendFile(__dirname + '/index.html')
-}) 
-
-app.get('/api/:rapperName', (request,response)=> {
-    const rappersName = request.params.rapperName.toLowerCase()
-    if(rappers[rappersName]){
-        response.json(rappers[rappersName])
-    }else {
-        response.json(rappers['Unknown'])
-    }
-    // response.json(rappers)
 })
 
+app.get('/api/:name',(request,response)=>{
+    const rapperName = request.params.name.toLowerCase()
 
-app.listen(process.env.PORT || PORT, ()=> {
-    console.log(`The server is running on ${PORT}! You better go catch it!`)
+    if( rappers[rapperName] ){
+        response.json(rappers[rapperName])
+    }else{
+        response.json(rappers['unknown'])
+    }
+    
+})
+
+app.listen(process.env.PORT || PORT, ()=>{
+    console.log(`The server is now running on port ${PORT}! Betta Go Catch It!`)
 })
 
 //added a new port for heroku
